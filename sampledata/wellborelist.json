@@ -1,4 +1,10 @@
-{
-    uid: "uid1",
-    name: "testWell"
-}
+[
+    {
+        "uid": "uid1",
+        "name": "testWell1"
+    },
+    {
+        "uid": "uid2",
+        "name": "testWell2"
+    }
+]

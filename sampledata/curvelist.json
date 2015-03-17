@@ -1,0 +1,12 @@
+[
+      {
+        "uid": "uidcurve1",
+        "name": "bitDepth",
+        "unit": "meter"
+      },
+      {
+        "uid": "rop",
+        "name": "ROP",
+        "unit": "m/s"
+      }
+]
