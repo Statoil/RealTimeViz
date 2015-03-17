@@ -16,9 +16,28 @@ var chartData={
   title: {
     text: "Data from Andreas Service"
   },
+  scaleX : {
+      lineWidth : 1,
+      guide : {
+          visible : true
+      },
+      tick : {
+          lineWidth : 1
+      },
+      step : "INTERVAL",
+      minValue : (new Date()).getTime(),
+      transform : {
+          type : 'date',
+          text : '%G:%i:%s',
+          item : {
+              visible : false
+          }
+      }
+  },
   series: [
     {
-        values: [0]
+        values: [0],
+        scales:"scale-x,scale-y"
     },
     {
         values: [0],

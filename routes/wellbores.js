@@ -7,6 +7,7 @@ var router = express.Router();
  */
 router.get('/wellborelist', function(req, res) {
     
+    console.log('servside call wellborelist');
     fs.readFile('./sampledata/wellborelist.json', 'utf8', function (err,data) {
         if (err) {
             return console.log(err);

@@ -12,6 +12,14 @@ router.get('/currentvalue', function(req, res) {
             return console.log(err);
         }
         var jsonRep = JSON.parse(data);
+        
+        for (var i = 0, len = jsonRep.length; i < len; ++i) {
+            var dataItem = jsonRep[i];
+            dataItem.plot0 = new Date();
+            dataItem.plot1 = new Date();
+        }
+ 
+ 
         res.json(jsonRep);
     });
 });
