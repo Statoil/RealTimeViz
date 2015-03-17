@@ -16,6 +16,8 @@ router.get('/curvelist', function(req, res) {
     });
 });
 
+
+//example get with an ID 
 router.get('/curvelist/:wellboreId', function(req, res) {
     
     var wellboreId = req.params.wellboreId;
