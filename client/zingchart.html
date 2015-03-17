@@ -10,22 +10,18 @@ var chartData={
   refresh:{
     type:"feed",
     transport:"http",
-    url:"/currentvalue",
+    url:"/data/currentvalue",
     interval:2000
   },
   title: {
     text: "Data from Andreas Service"
   },
-  label:{
-    text:"Time"
-  },
   series: [
     {
-        values: [],
-        scales:"scale-x,scale-y"
+        values: [0]
     },
     {
-        values: [],
+        values: [0],
         scales:"scale-x,scale-y"
     }
     ]

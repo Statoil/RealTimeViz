@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require("fs");
 var router = express.Router();
 
 /*
@@ -6,19 +7,13 @@ var router = express.Router();
  */
 router.get('/wellborelist', function(req, res) {
     
-    var items = {
-        uid: "uid1",
-        name: "wellbore1"
-    };
-    
-    res.json (items);
-    
-    //var db = req.db;
-    //db.collection('userlist').find().toArray(function (err, items) {
-    //    res.json(items);
-    //});
-    
-    
+    fs.readFile('./sampledata/wellborelist.json', 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+        var jsonRep = JSON.parse(data);
+        res.json(jsonRep);
+    });
 });
 
 

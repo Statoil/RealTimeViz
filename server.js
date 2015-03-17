@@ -7,13 +7,9 @@ var http = require('http');
 var path = require('path');
 
 var async = require('async');
-var socketio = require('socket.io');
 var express = require('express');
 var bodyParser = require('body-parser');
-
-
-var wellbores = require('./routes/wellbores');
-var curves = require('./routes/curves');
+var fs = require('fs')
 
 //
 // ## SimpleServer `SimpleServer(obj)`
@@ -22,10 +18,12 @@ var curves = require('./routes/curves');
 //  * `port` - The HTTP port to listen on. If `process.env.PORT` is set, _it overrides this value_.
 //
 var router = express();
-var server = http.createServer(router);
-var io = socketio.listen(server);
+var server = http.createServer(router);//var io = socketio.listen(server);
 
-//router.use(logger('dev'));
+var wellbores = require('./routes/wellbores');
+var curves = require('./routes/curves');
+var data = require('./routes/data');
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
@@ -33,94 +31,7 @@ router.use(express.static(path.resolve(__dirname, 'client')));
 
 router.use('/wellbores', wellbores);
 router.use('/curves', curves);
-
-var messages = [];
-var sockets = [];
-
-// catch 404 and forward to error handler
-//router.use(function(req, res, next) {
-//    var err = new Error('Not Found');
-////    err.status = 404;
-//    next(err);
-//});
-
-
-// development error handler
-// will print stacktrace
-//if (router.get('env') === 'development') {
-//    router.use(function(err, req, res, next) {
-////        res.status(err.status || 500);
-//        res.render('error', {
-//            message: err.message,
-//            error: err
-//        });
-//    });
-//}
-
-// production error handler
-// no stacktraces leaked to user
-//router.use(function(err, req, res, next) {
-//    res.status(err.status || 500);
-//    res.render('error', {
-//        message: err.message,
-//        error: {}
-//    });
-//});
-
-
-io.on('connection', function (socket) {
-    messages.forEach(function (data) {
-      socket.emit('message', data);
-    });
-
-    sockets.push(socket);
-
-    socket.on('disconnect', function () {
-      sockets.splice(sockets.indexOf(socket), 1);
-      updateRoster();
-    });
-
-    socket.on('message', function (msg) {
-      var text = String(msg || '');
-
-      if (!text)
-        return;
-
-      socket.get('name', function (err, name) {
-        var data = {
-          name: name,
-          text: text
-        };
-
-        broadcast('message', data);
-        messages.push(data);
-      });
-    });
-
-    socket.on('identify', function (name) {
-      socket.set('name', String(name || 'Anonymous'), function (err) {
-        updateRoster();
-      });
-    });
-  });
-
-function updateRoster() {
-  async.map(
-    sockets,
-    function (socket, callback) {
-      socket.get('name', callback);
-    },
-    function (err, names) {
-      broadcast('roster', names);
-    }
-  );
-}
-
-function broadcast(event, data) {
-  sockets.forEach(function (socket) {
-    socket.emit(event, data);
-  });
-}
+router.use('/data', data);
 
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   var addr = server.address();
@@ -128,6 +39,4 @@ server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
 });
 
 
-
-
-module.exports = router;
+//module.exports = router;
