@@ -1,0 +1,31 @@
+<html>
+<head>
+<script type="text/javascript"
+  src="js/dygraph-combined-dev.js"></script>
+</head>
+<body>
+  <h1>Dygraphs</h1>
+<div id="graphdiv3"  style="width:500px; height:300px;"></div>
+
+<script type="text/javascript">
+  var g3 = new Dygraph(
+    document.getElementById("graphdiv3"),
+    "Time,Temperature,Pressure\n" +
+    "2015-03-17T12:00,75,100\n" +
+    "2015-03-17T12:01,70,100\n" +
+    "2015-03-17T12:02,65,80\n" +
+    "2015-03-17T12:03,70,100\n" +
+    "2015-03-17T12:04,65,100\n" +
+    "2015-03-17T12:05,60,110\n",
+    {
+      rollPeriod: 7,
+      showRoller: true,
+      //fractions: true,
+      //errorBars: true
+    }
+  );
+  g3.constructor.
+</script>
+<input type="button" onClick="global.g3."/>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+<head>
+  <script src="http://cdn.zingchart.com/zingchart.min.js"></script>
+
+</head>
+<body>
+  <h1>ZingChart</h1>
+<div id=”chartDiv” style="width:500px; height:300px;"></div>
+
+<script type="text/javascript">
+var chartData={
+  "type": "bar",
+  "series": [
+    { "values": [35, 42, 67, 89, 25, 34, 67, 85 ] },
+    { "values": [28, 57, 43, 56, 78, 99, 67, 28 ] }
+  ]
+};
+
+window.onload=function(){
+    zingchart.render({
+        id:’chartDiv’,
+        data:chartData
+    });
+};
+</script>
+<input type="button"/>
+</body>
+</html>
