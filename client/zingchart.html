@@ -1,28 +1,49 @@
 <html>
 <head>
-  <script src="http://cdn.zingchart.com/zingchart.min.js"></script>
+<meta charset="utf-8">
+<title>Hello ZingChart World</title>
+<script src="http://cdn.zingchart.com/zingchart.min.js"></script>
+<!--script src="js/zingchart/nodejs/zingchart-nodejs.min.js"></script-->
+<script>
+var chartData={
+  type: "line", 
+  refresh:{
+    type:"feed",
+    transport:"http",
+    url:"/currentvalue",
+    interval:2000
+  },
+  title: {
+    text: "Data from Andreas Service"
+  },
+  label:{
+    text:"Time"
+  },
+  series: [
+    {
+        values: [],
+        scales:"scale-x,scale-y"
+    },
+    {
+        values: [],
+        scales:"scale-x,scale-y"
+    }
+    ]
+};
+window.onload=function(){
+  zingchart.render({
+    id:"chartDiv",
+    height:400,
+    width:"100%",
+    data:chartData
+  });
+};
 
+</script>
 </head>
 <body>
-  <h1>ZingChart</h1>
-<div id=”chartDiv” style="width:500px; height:300px;"></div>
-
-<script type="text/javascript">
-var chartData={
-  "type": "bar",
-  "series": [
-    { "values": [35, 42, 67, 89, 25, 34, 67, 85 ] },
-    { "values": [28, 57, 43, 56, 78, 99, 67, 28 ] }
-  ]
-};
-
-window.onload=function(){
-    zingchart.render({
-        id:’chartDiv’,
-        data:chartData
-    });
-};
-</script>
-<input type="button"/>
+<div id="chartDiv"></div>
+<button onclick="zingchart.exec('chartDiv', 'startfeed');">Start</button>
+<button onclick="zingchart.exec('chartDiv', 'stopfeed');">Stop</button>
 </body>
 </html>
