@@ -1,12 +1,45 @@
 [
-      {
-        "uid": "uidcurve1",
-        "name": "bitDepth",
-        "unit": "meter"
-      },
-      {
-        "uid": "rop",
-        "name": "ROP",
-        "unit": "m/s"
-      }
+{
+	time : "2014-03-17T14:00:00.000", 	
+	curves : [ 
+		{ 	name: "ROP",
+			unit: "m/h",
+			value: 80
+		},
+		{ 	name: "WOB",
+			unit: "m/h",
+			value: 8374
+		},
+		{ 	name: "BIT_DEPTH",
+			unit: "m",
+			value: 8374
+		},
+		{ 	name: "HOLE_DEPTH",
+			unit: "m",
+			value: 9000
+		},
+	]		
+},
+
+{
+	time : "2014-03-17T14:00:00.000", 	
+	curves : [ 
+		{ 	name: "ROP",
+			unit: "m/h",
+			value: 80
+		},
+		{ 	name: "WOB",
+			unit: "m/h",
+			value: 8374
+		},
+		{ 	name: "BIT_DEPTH",
+			unit: "m",
+			value: 8374
+		},
+		{ 	name: "HOLE_DEPTH",
+			unit: "m",
+			value: 9000
+		},
+	]		
+},
 ]
