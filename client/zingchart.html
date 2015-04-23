@@ -8,6 +8,7 @@
 <script>
 var chartData={
   type: "line", 
+  legend:{  },
   refresh:{
     type:"feed",
     transport:"js",
@@ -18,6 +19,9 @@ var chartData={
     text: "Data from Mock Service"
   },
   scaleX : {
+  	  label:{
+		text: "Time"
+	  },
       lineWidth : 1,
       guide : {
           visible : true
@@ -26,7 +30,7 @@ var chartData={
           lineWidth : 1
       },
       step : "INTERVAL",
-      //minValue : (new Date()).getTime(),
+      //minValue : formatDateStr(new Date().getTime()),
       transform : {
           type : 'date',
 		  //all  : '%D, %d %M %Y<br>%h:%i %A',
@@ -40,10 +44,12 @@ var chartData={
   },
   series: [
     {
+		text:"ROP",
         values: [0],
         scales:"scale-x,scale-y"
     },
     {
+		text:"WOB",
         values: [0],
         scales:"scale-x,scale-y"
     }
@@ -53,6 +59,7 @@ var chartData={
 
 var chartData2={
   type: "line", 
+  legend:{  },
   refresh:{
     type:"feed",
     transport:"js",
@@ -63,6 +70,9 @@ var chartData2={
     text: "Data from Mock Service"
   },
   scaleX : {
+	  label:{
+		text: "Time"
+	  },
       lineWidth : 1,
       guide : {
           visible : true
@@ -71,7 +81,7 @@ var chartData2={
           lineWidth : 1
       },
       step : "INTERVAL",
-      //minValue : (new Date()).getTime(),
+      //minValue : "14:25:00",
       transform : {
           type : 'date',
 		  //all  : '%D, %d %M %Y<br>%h:%i %A',
@@ -85,10 +95,12 @@ var chartData2={
   },
   series: [
     {
+		text:"Bit depth",
         values: [0],
         scales:"scale-x,scale-y"
     },
     {
+		text:"Hole depth",
         values: [0],
         scales:"scale-x,scale-y"
     }
@@ -114,7 +126,7 @@ window.feed = function(callback) {
 		var tick = {};		
 
 		tick.plot0 = [formatDateStr(data[0].time), data[0].curves[0].value];
-		tick.plot1 = [formatDateStr(data[1].time), data[1].curves[1].value];
+		tick.plot1 = [formatDateStr(data[0].time), data[0].curves[1].value];
 		//tick.plot0 = [str, data[0].curves[0].value+parseInt(10*Math.random(), 10)];
 		//tick.plot1 = [str, data[0].curves[1].value+parseInt(10*Math.random(), 10)];
 		//tick.plot2 = [data[0].time, data[0].curves[2].value];
@@ -128,8 +140,8 @@ window.feed2 = function(callback) {
 		//var parsed=$.parseJSON(data);
 		var tick = {};		
 
-		tick.plot0 = [formatDateStr(data[2].time), data[2].curves[2].value];
-		tick.plot1 = [formatDateStr(data[3].time), data[3].curves[3].value];
+		tick.plot0 = [formatDateStr(data[0].time), data[0].curves[2].value];
+		tick.plot1 = [formatDateStr(data[0].time), data[0].curves[3].value];
 		console.log(tick);
 		callback(JSON.stringify(tick));
 	} );
