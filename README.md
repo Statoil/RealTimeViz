@@ -26,7 +26,7 @@ Rest API:
 * Get List of Wellbores:
     https://realtimeviz-ajontved.c9.io/wellbores/wellborelist
 * Get List of Curves:
-    https://realtimeviz-ajontved.c9.io/curve/curvelist
+    https://realtimeviz-ajontved.c9.io/curves/curvelist
 * Get Current Value:
     https://realtimeviz-ajontved.c9.io/data/currentvalue
 * 
