@@ -1,44 +1,44 @@
 [
 {
-	time : "2014-03-17T14:00:00.000", 	
-	curves : [ 
-		{ 	name: "ROP",
-			unit: "m/h",
-			value: 80
+	"time" : "2014-03-17T14:00:00.000", 	
+	"curves" : [ 
+		{ "name": "ROP",
+			"unit": "m/h",
+			"value": 70
 		},
-		{ 	name: "WOB",
-			unit: "m/h",
-			value: 8374
+		{ "name": "WOB",
+			"unit": "tonne",
+			"value": 10
 		},
-		{ 	name: "BIT_DEPTH",
-			unit: "m",
-			value: 8374
+		{ "name": "BIT_DEPTH",
+			"unit": "m",
+			"value": 8374
 		},
-		{ 	name: "HOLE_DEPTH",
-			unit: "m",
-			value: 9000
+		{ "name": "HOLE_DEPTH",
+			"unit": "m",
+			"value": 9000
 		},
 	]		
 },
 
 {
-	time : "2014-03-17T14:00:00.000", 	
-	curves : [ 
-		{ 	name: "ROP",
-			unit: "m/h",
-			value: 80
+	"time" : "2014-03-17T14:10:00.000", 	
+	"curves" : [ 
+		{ "name": "ROP",
+			"unit": "m/h",
+			"value": 80
 		},
-		{ 	name: "WOB",
-			unit: "m/h",
-			value: 8374
+		{ "name": "WOB",
+			"unit": "tonne",
+			"value": 14
 		},
-		{ 	name: "BIT_DEPTH",
-			unit: "m",
-			value: 8374
+		{ "name": "BIT_DEPTH",
+			"unit": "m",
+			"value": 8390
 		},
-		{ 	name: "HOLE_DEPTH",
-			unit: "m",
-			value: 9000
+		{ "name": "HOLE_DEPTH",
+			"unit": "m",
+			"value": 9100
 		},
 	]		
 },
