@@ -17,7 +17,7 @@
 		{ "name": "HOLE_DEPTH",
 			"unit": "m",
 			"value": 9000
-		},
+		}
 	]		
 },
 
@@ -39,7 +39,7 @@
 		{ "name": "HOLE_DEPTH",
 			"unit": "m",
 			"value": 9100
-		},
+		}
 	]		
 },
 ]
