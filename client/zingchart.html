@@ -10,7 +10,7 @@ var chartData={
   refresh:{
     type:"feed",
     transport:"http",
-    url:"/data/currentvalue",
+    url:"feed()",
     interval:2000
   },
   title: {
@@ -44,6 +44,11 @@ var chartData={
         scales:"scale-x,scale-y"
     }
     ]
+};
+window.feed = function(callback) {
+    var tick = {};
+    tick.plot0 = parseInt(10+900*Math.random(), 10);
+    callback(JSON.stringify(tick));
 };
 window.onload=function(){
   zingchart.render({
