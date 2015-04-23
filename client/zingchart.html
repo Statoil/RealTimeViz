@@ -4,17 +4,18 @@
 <title>Hello ZingChart World</title>
 <script src="http://cdn.zingchart.com/zingchart.min.js"></script>
 <!--script src="js/zingchart/nodejs/zingchart-nodejs.min.js"></script-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 var chartData={
   type: "line", 
   refresh:{
     type:"feed",
-    transport:"http",
+    transport:"js",
     url:"feed()",
     interval:2000
   },
   title: {
-    text: "Data from Andreas Service"
+    text: "Data from Mock Service"
   },
   scaleX : {
       lineWidth : 1,
@@ -25,10 +26,13 @@ var chartData={
           lineWidth : 1
       },
       step : "INTERVAL",
-      minValue : (new Date()).getTime(),
+      //minValue : (new Date()).getTime(),
       transform : {
           type : 'date',
+		  //all  : '%D, %d %M %Y<br>%h:%i %A',
+		  //all  : '%G:%i:%s',
           text : '%G:%i:%s',
+		  //uniform: false,
           item : {
               visible : false
           }
@@ -46,9 +50,16 @@ var chartData={
     ]
 };
 window.feed = function(callback) {
-    var tick = {};
-    tick.plot0 = parseInt(10+900*Math.random(), 10);
-    callback(JSON.stringify(tick));
+	$.getJSON("/curves/curvelist/1", function(data) {
+		//var parsed=$.parseJSON(data);
+		var tick = {};		
+		//var n=(new Date()).getTime();
+		tick.plot0 = [data[0].time, data[0].curves[0].value];
+		tick.plot1 = [data[0].time, data[0].curves[1].value];
+		//tick.plot2 = [data[0].time, data[0].curves[2].value];
+		console.log(tick);
+		callback(JSON.stringify(tick));
+	} );
 };
 window.onload=function(){
   zingchart.render({
