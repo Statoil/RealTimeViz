@@ -30,8 +30,8 @@ var chartData={
       transform : {
           type : 'date',
 		  //all  : '%D, %d %M %Y<br>%h:%i %A',
-		  //all  : '%G:%i:%s',
-          text : '%G:%i:%s',
+		  all  : '%G:%i:%s',
+          //text : '%G:%i:%s',
 		  //uniform: false,
           item : {
               visible : false
@@ -49,18 +49,103 @@ var chartData={
     }
     ]
 };
+
+
+var chartData2={
+  type: "line", 
+  refresh:{
+    type:"feed",
+    transport:"js",
+    url:"feed2()",
+    interval:2000
+  },
+  title: {
+    text: "Data from Mock Service"
+  },
+  scaleX : {
+      lineWidth : 1,
+      guide : {
+          visible : true
+      },
+      tick : {
+          lineWidth : 1
+      },
+      step : "INTERVAL",
+      //minValue : (new Date()).getTime(),
+      transform : {
+          type : 'date',
+		  //all  : '%D, %d %M %Y<br>%h:%i %A',
+		  all  : '%G:%i:%s',
+          //text : '%G:%i:%s',
+		  //uniform: false,
+          item : {
+              visible : false
+          }
+      }
+  },
+  series: [
+    {
+        values: [0],
+        scales:"scale-x,scale-y"
+    },
+    {
+        values: [0],
+        scales:"scale-x,scale-y"
+    }
+    ]
+};
+
+function formatDateStr(input){
+}
+
 window.feed = function(callback) {
 	$.getJSON("/curves/curvelist/1", function(data) {
 		//var parsed=$.parseJSON(data);
 		var tick = {};		
-		//var n=(new Date()).getTime();
-		tick.plot0 = [data[0].time, data[0].curves[0].value];
-		tick.plot1 = [data[0].time, data[0].curves[1].value];
+		var dt=new Date();
+		var dtStr=dt.getTime();
+
+		var mins=dt.getMinutes();
+		if(mins<10) mins="0"+mins;
+		var secs=dt.getSeconds();
+		if(secs<10) secs="0"+secs;
+		
+		var str = dt.getHours() + ":" + mins + ":" + secs;
+		
+		tick.plot0 = [str, data[0].curves[0].value];
+		tick.plot1 = [str, data[0].curves[1].value];
+		//tick.plot0 = [str, data[0].curves[0].value+parseInt(10*Math.random(), 10)];
+		//tick.plot1 = [str, data[0].curves[1].value+parseInt(10*Math.random(), 10)];
 		//tick.plot2 = [data[0].time, data[0].curves[2].value];
 		console.log(tick);
 		callback(JSON.stringify(tick));
 	} );
 };
+
+window.feed2 = function(callback) {
+	$.getJSON("/curves/curvelist/1", function(data) {
+		//var parsed=$.parseJSON(data);
+		var tick = {};		
+		var dt=new Date();
+		var dtStr=dt.getTime();
+
+		var mins=dt.getMinutes();
+		if(mins<10) mins="0"+mins;
+		var secs=dt.getSeconds();
+		if(secs<10) secs="0"+secs;
+		
+		var str = dt.getHours() + ":" + mins + ":" + secs;
+		
+		tick.plot0 = [str, data[2].curves[2].value];
+		tick.plot1 = [str, data[3].curves[3].value];
+		//tick.plot0 = [str, data[0].curves[0].value+parseInt(10*Math.random(), 10)];
+		//tick.plot1 = [str, data[0].curves[1].value+parseInt(10*Math.random(), 10)];
+		//tick.plot2 = [data[0].time, data[0].curves[2].value];
+		console.log(tick);
+		callback(JSON.stringify(tick));
+	} );
+};
+
 window.onload=function(){
   zingchart.render({
     id:"chartDiv",
@@ -68,12 +153,19 @@ window.onload=function(){
     width:"100%",
     data:chartData
   });
+  zingchart.render({
+    id:"chartDiv2",
+    height:400,
+    width:"100%",
+    data:chartData2
+  });
 };
 
 </script>
 </head>
 <body>
 <div id="chartDiv"></div>
+<div id="chartDiv2"></div>
 <button onclick="zingchart.exec('chartDiv', 'startfeed');">Start</button>
 <button onclick="zingchart.exec('chartDiv', 'stopfeed');">Stop</button>
 </body>
