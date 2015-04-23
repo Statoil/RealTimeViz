@@ -24,7 +24,7 @@ Once the server is running, open the project in the shape of 'https://projectnam
 
 Rest API:
 * Get List of Wellbores:
-    https://realtimeviz-ajontved.c9.io/wellbore/wellborelist
+    https://realtimeviz-ajontved.c9.io/wellbores/wellborelist
 * Get List of Curves:
     https://realtimeviz-ajontved.c9.io/curve/curvelist
 * Get Current Value:
